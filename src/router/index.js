@@ -34,29 +34,71 @@ export const constantRoutes = [
   {
     path: '/blog',
     component: Layout,
-    redirect: '/blog/article/list',
-    name: '文章管理',
-    meta: { title: '文章管理', icon: '文章管理' },
-    children: [{
-      path: 'article/list',
-      name: '文章列表',
-      component: () => import('@/views/blog/article/list'),
-      meta: { title: '文章列表', icon: 'table' }
+    redirect: '/blog/article',
+    name: '博客管理',
+    meta: {
+      title: '博客管理'
     },
-    {
-      path: 'article/form',
-      name: '文章表单',
-      component: () => import('@/views/blog/article/form'),
-      meta: { title: '文章表单', icon: 'form' }
-    },
-    {
-      path: 'article/form/:id',
-      name: '文章表单',
-      component: () => import('@/views/blog/article/form'),
-      meta: { title: '文章表单', icon: 'form' },
-      hidden: true
-    },
-  ]
+    children: [
+      {
+        path: 'article',
+        component: () => import('@/views/blog/article/index'), // Parent router-view
+        redirect: '/blog/article/list',
+        name: '文章管理',
+        meta: { title: '文章管理', icon: '文章管理' },
+        children: [
+          {
+            path: 'list',
+            name: '文章列表',
+            component: () => import('@/views/blog/article/list'),
+            meta: { title: '文章列表', icon: 'table' }
+          },
+          {
+            path: 'form',
+            name: '文章表单',
+            component: () => import('@/views/blog/article/form'),
+            meta: { title: '文章表单', icon: 'form' }
+          },
+          {
+            path: 'form/:id',
+            name: '文章表单',
+            component: () => import('@/views/blog/article/form'),
+            meta: { title: '文章表单', icon: 'form' },
+            hidden: true
+          },
+        ]
+      },
+      {
+        path: 'category',
+        component: () => import('@/views/blog/category/index'),
+        redirect: '/blog/category/list',
+        name: '分类管理',
+        meta: { title: '分类管理' },
+        children: [
+          {
+            path: 'list',
+            name: '分类列表',
+            component: () => import('@/views/blog/category/list'),
+            meta: { title: '分类列表', icon: 'table' }
+          }
+        ]
+      },
+      {
+        path: 'tag',
+        component: () => import('@/views/blog/tag/index'),
+        redirect: '/blog/tag/list',
+        name: '标签管理',
+        meta: { title: '标签管理' },
+        children: [
+          {
+            path: 'list',
+            name: '标签列表',
+            component: () => import('@/views/blog/tag/list'),
+            meta: { title: '标签列表', icon: 'table' }
+          }
+        ]
+      }
+    ]
   },
 
   // 404 page must be placed at the end !!!

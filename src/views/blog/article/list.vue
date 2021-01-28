@@ -83,7 +83,7 @@
         ></el-table-column>
         <el-table-column label="所属分类" align="center" width="140">
           <template slot-scope="scope">
-            <el-tag size="small">{{ scope.row.categoryName }} </el-tag>
+            <el-tag size="small" v-if="scope.row.categoryName">{{ scope.row.categoryName }} </el-tag>
           </template>
         </el-table-column>
         <el-table-column label="所属标签" align="center" width="140">

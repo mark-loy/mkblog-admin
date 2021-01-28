@@ -15,7 +15,9 @@ export default {
     return request({
       method: 'get',
       url: `${BASE_API}/${current}/${limit}`,
-      params: name
+      params: {
+        name
+      }
     })
   },
   /* 保存分类信息 */
