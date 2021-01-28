@@ -15,7 +15,7 @@ export default {
   saveArticle(articleForm) {
     return request({
       method: 'post',
-      url: '/',
+      url: `${BASE_API}/`,
       data: articleForm
     })
   },
@@ -23,14 +23,14 @@ export default {
   getArticleById(aid) {
     return request({
       method: 'get',
-      url: `/${aid}`
+      url: `${BASE_API}/${aid}`
     })
   },
   /* 修改文章数据 */
   updateArticle(articleForm) {
     return request({
       method: 'put',
-      url: '/',
+      url: `${BASE_API}/`,
       data: articleForm
     })
   },
@@ -38,15 +38,39 @@ export default {
   deleteArticle(aid) {
     return request({
       method: 'delete',
-      url: `/${aid}`
+      url: `${BASE_API}/${aid}`
     })
   },
   /* 批量删除文章数据 */
   deleteBatchArticle(aids) {
     return request({
       method: 'delete',
-      url: '/',
+      url: `${BASE_API}/`,
       params: aids
     })
+  },
+  /* 修改文章发布状态 */
+  updateArticleStatus(aid, status) {
+    return request({
+      method: 'put',
+      url: `${BASE_API}/${aid}/${status}`
+    })
+  },
+  /* 保存并发布文章数据 */
+  saveArticlePublish(articleForm) {
+    return request({
+      method: 'post',
+      url: `${BASE_API}/pub`,
+      data: articleForm
+    })
+  },
+  /* 修改并发布文章数据 */
+  updateArticlePublish(articleForm) {
+    return request({
+      method: 'put',
+      url: `${BASE_API}/pub`,
+      data: articleForm
+    })
   }
+
 }

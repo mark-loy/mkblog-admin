@@ -48,7 +48,14 @@ export const constantRoutes = [
       name: '文章表单',
       component: () => import('@/views/blog/article/form'),
       meta: { title: '文章表单', icon: 'form' }
-    }
+    },
+    {
+      path: 'article/form/:id',
+      name: '文章表单',
+      component: () => import('@/views/blog/article/form'),
+      meta: { title: '文章表单', icon: 'form' },
+      hidden: true
+    },
   ]
   },
 
