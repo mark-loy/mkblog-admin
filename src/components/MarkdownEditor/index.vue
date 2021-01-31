@@ -1,4 +1,5 @@
 <template>
+<div >
   <editor
     :options="editorOptions"
     initialEditType="markdown"
@@ -6,6 +7,8 @@
     @change="onEditorChange"
     ref="toastuiEditor"
   />
+</div>
+
 </template>
 
 <script>
@@ -32,6 +35,11 @@ export default {
       type: String,
       required: true,
       default: "500px"
+    },
+    /* 输入文本 */
+    value: {
+      type: String,
+      required: false
     }
   },
   computed: {
@@ -43,6 +51,13 @@ export default {
       };
     },
   },
+  watch: {
+    /* 监听value */
+    value(newValue, oldValue) {
+      // 设置输入的文本
+      this.setHtml()
+    }
+  },
   methods: {
     /* 监听编辑器改变 */
     onEditorChange() {
@@ -53,6 +68,10 @@ export default {
     getHtml() {
       return this.$refs.toastuiEditor.invoke("getHtml");
     },
+    /* 设置输入文本 */
+    setHtml() {
+      return this.$refs.toastuiEditor.invoke("setHtml", this.value);
+    }
   },
 };
 </script>

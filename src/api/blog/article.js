@@ -71,6 +71,13 @@ export default {
       url: `${BASE_API}/pub`,
       data: articleForm
     })
+  },
+  /* 修改文章置顶状态 */
+  updateArticleTopStatus(aid, status) {
+    return request({
+      method: 'put',
+      url: `${BASE_API}/top/${aid}/${status}`
+    })
   }
 
 }

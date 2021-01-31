@@ -57,6 +57,9 @@
         <el-table-column type="expand">
           <template slot-scope="props">
             <el-form label-position="top" class="demo-table-expand">
+              <el-form-item label="文章概要">
+                <div>{{ props.row.summary }}</div>
+              </el-form-item>
               <el-form-item label="背景图">
                 <img :src="props.row.imageUrl" :alt="props.row.imageTitle" />
               </el-form-item>
@@ -81,12 +84,14 @@
           prop="userName"
           width="140"
         ></el-table-column>
-        <el-table-column label="所属分类" align="center" width="140">
+        <el-table-column label="所属分类" align="center" width="120">
           <template slot-scope="scope">
-            <el-tag size="small" v-if="scope.row.categoryName">{{ scope.row.categoryName }} </el-tag>
+            <el-tag size="small" v-if="scope.row.categoryName"
+              >{{ scope.row.categoryName }}
+            </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="所属标签" align="center" width="140">
+        <el-table-column label="所属标签" align="center" width="120">
           <template slot-scope="scope">
             <el-tag
               v-for="(tagName, index) in scope.row.tagsName"
@@ -101,27 +106,40 @@
           label="阅读数"
           align="center"
           prop="viewCount"
-          width="120"
+          width="90"
         ></el-table-column>
         <el-table-column
           label="点赞数"
           align="center"
           prop="likeCount"
-          width="120"
+          width="90"
         ></el-table-column>
         <el-table-column
           label="评论数"
           align="center"
           prop="commentCount"
-          width="120"
+          width="90"
         ></el-table-column>
-        <el-table-column label="创建时间" align="center" width="140">
+        <el-table-column label="创建时间" align="center" width="120">
           <template slot-scope="scope">
             {{ scope.row.gmtCreate.substr(0, 10) }}
           </template>
         </el-table-column>
 
-        <el-table-column label="文章发布状态" width="120" align="center">
+        <el-table-column label="是否置顶" width="100" align="center">
+          <template slot-scope="scope"
+            >F
+            <el-switch
+              v-model="scope.row.isTop"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              @change="updateArticleTopStatus(scope.row.isTop, scope.row.id)"
+            >
+            </el-switch>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="文章发布状态" width="100" align="center">
           <template slot-scope="scope">
             <el-switch
               v-model="scope.row.isReleased"
@@ -231,6 +249,14 @@ export default {
       articleApi.updateArticleStatus(id, newStatus).then((res) => {
         // 提示
         this.$message.success("修改文章发布状态成功");
+      });
+    },
+    /* 修改文章的置顶状态 */
+    updateArticleTopStatus(status, id) {
+      // 调用api
+      articleApi.updateArticleTopStatus(id, status).then((res) => {
+        // 提示
+        this.$message.success("修改文章置顶状态成功");
       });
     },
   },

@@ -101,6 +101,30 @@ export const constantRoutes = [
     ]
   },
 
+  {
+    path: '/site',
+    component: Layout,
+    redirect: '/site/info',
+    name: '站点管理',
+    meta: {
+      title: '站点管理'
+    },
+    children: [
+      {
+        path: 'info',
+        component: () => import('@/views/site/info'),
+        name: '站点信息',
+        meta: { title: '站点信息', icon: '文章管理' },
+      },
+      {
+        path: 'social/list',
+        component: () => import('@/views/site/social/list'),
+        name: '社交管理',
+        meta: { title: '社交管理', icon: '文章管理' }
+      }
+    ]
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

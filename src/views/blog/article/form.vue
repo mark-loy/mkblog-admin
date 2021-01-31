@@ -13,7 +13,7 @@
           style="width: 50%; min-width: 350px"
           prop="title"
         >
-          <el-input v-model="articleForm.title" />
+          <el-input v-model="articleForm.title" placeholder="请输入文章标题" />
         </el-form-item>
 
         <!-- 发表人 -->
@@ -53,6 +53,16 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="文章概要" style="width: 50%; min-width: 350px">
+          <el-input
+            type="textarea"
+            autosize
+            placeholder="请输入文章概要"
+            v-model="articleForm.summary"
+          >
+          </el-input>
+        </el-form-item>
+
         <!-- 文章背景 -->
         <el-form-item label="背景图">
           <el-upload
@@ -82,15 +92,20 @@
           </el-dialog>
         </el-form-item>
         <el-form-item label="背景图标题" style="width: 50%; min-width: 350px">
-          <el-input v-model="articleForm.imageTitle" />
+          <el-input v-model="articleForm.imageTitle" placeholder="请输入图片标题" />
         </el-form-item>
         <el-form-item label="背景图链接" style="width: 50%; min-width: 350px">
-          <el-input v-model="articleForm.linkUrl" />
+          <el-input v-model="articleForm.linkUrl" placeholder="请输入图片链接" />
         </el-form-item>
 
         <el-form-item label="文章内容" style="width: 80%; min-width: 700px">
-         <!--  <tinymce :height="600" v-model="articleForm.content" /> -->
-         <markdown-editor  @inputContent="inputContent" placeholder="请输入文章内容" height="700px"/>
+          <!--  <tinymce :height="600" v-model="articleForm.content" /> -->
+          <markdown-editor
+            @inputContent="inputContent"
+            :value="articleForm.content"
+            placeholder="请输入文章内容"
+            height="700px"
+          />
         </el-form-item>
 
         <el-form-item>
@@ -124,7 +139,7 @@ import MarkdownEditor from "@/components/MarkdownEditor";
 
 export default {
   components: {
-    MarkdownEditor
+    MarkdownEditor,
   },
   data() {
     return {
@@ -346,12 +361,11 @@ export default {
     },
     /* 监听markdown编辑器内容改变 */
     inputContent(content) {
-      this.articleForm.content = content
-    }
+      this.articleForm.content = content;
+    },
   },
 };
 </script>
 
 <style>
-
 </style>
