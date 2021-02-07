@@ -97,6 +97,13 @@ export const constantRoutes = [
             meta: { title: '标签列表', icon: 'table' }
           }
         ]
+      },
+      {
+        path: 'comment/:id',
+        component: () => import('@/views/blog/comment/list'),
+        name: '评论列表',
+        meta: { title: '评论列表' },
+        hidden: true
       }
     ]
   },
@@ -121,6 +128,18 @@ export const constantRoutes = [
         component: () => import('@/views/site/social/list'),
         name: '社交管理',
         meta: { title: '社交管理', icon: '文章管理' }
+      },
+      {
+        path: 'friend/list',
+        component: () => import('@/views/site/friend/list'),
+        name: '友站管理',
+        meta: { title: '友站管理', icon: '文章管理' }
+      },
+      {
+        path: 'guestbook/list',
+        component: () => import('@/views/site/guestbook/list'),
+        name: '留言管理',
+        meta: { title: '留言管理', icon: '文章管理' }
       }
     ]
   },

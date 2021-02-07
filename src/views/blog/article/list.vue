@@ -127,8 +127,7 @@
         </el-table-column>
 
         <el-table-column label="是否置顶" width="100" align="center">
-          <template slot-scope="scope"
-            >F
+          <template slot-scope="scope">
             <el-switch
               v-model="scope.row.isTop"
               active-color="#13ce66"
@@ -158,13 +157,20 @@
                 >编辑文章信息</el-button
               >
             </router-link>
-            <el-button
-              type="text"
-              size="mini"
-              icon="el-icon-delete"
-              @click="deleteArticle(scope.row.id)"
-              >删除</el-button
-            >
+            <router-link :to="'/blog/comment/' + scope.row.id">
+              <el-button type="text" size="mini" icon="el-icon-view"
+                >查看评论</el-button
+              >
+            </router-link>
+            <div>
+              <el-button
+                type="text"
+                size="mini"
+                icon="el-icon-delete"
+                @click="deleteArticle(scope.row.id)"
+                >删除</el-button
+              >
+            </div>
           </template>
         </el-table-column>
       </el-table>
@@ -213,7 +219,6 @@ export default {
         .then((res) => {
           // 设置文章数据
           this.articles = res.data.articles;
-          console.log(this.articles);
           this.total = res.data.total;
         });
     },
