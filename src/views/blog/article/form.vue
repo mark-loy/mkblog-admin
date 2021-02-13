@@ -67,7 +67,7 @@
         <el-form-item label="背景图">
           <el-upload
             class="avatar-uploader"
-            :action="BASE_API + 'oss/file/'"
+            :action="BASE_API + 'api/oss/file/'"
             name="file"
             :limit="1"
             :on-success="handleSuccess"

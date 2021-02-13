@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "site/friend"
+const BASE_API = "api/site/friend"
 
 export default {
   /* 查询所有友站信息 */

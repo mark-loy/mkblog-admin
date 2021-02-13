@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "site/social"
+const BASE_API = "api/site/social"
 
 export default {
   /* 获取所有社交信息 */

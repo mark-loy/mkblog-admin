@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "site/guestbook"
+const BASE_API = "api/site/guestbook"
 
 export default {
   /* 获取分页留言信息 */

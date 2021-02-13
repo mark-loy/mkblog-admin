@@ -6,7 +6,7 @@
         <el-button style="float: right; padding: 3px 0" type="text" v-show="readOnly"  @click="changeFormStatue"
           >编辑</el-button
         >
-        <el-button style="float: right; padding: 3px 0" type="text" v-show="!readOnly" @click="changeFormStatue"
+        <el-button style="float: right; padding: 3px 0" type="text" v-show="!readOnly && hasPerm('site.update')" @click="changeFormStatue"
           >保存</el-button
         >
       </div>

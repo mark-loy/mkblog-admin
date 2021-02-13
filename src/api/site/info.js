@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "site/info"
+const BASE_API = "api/site/info"
 
 export default {
   /* 获取站点信息 */

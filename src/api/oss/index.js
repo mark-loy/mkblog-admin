@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "oss/file"
+const BASE_API = "api/oss/file"
 
 export default {
   /* 删除上传文件 */

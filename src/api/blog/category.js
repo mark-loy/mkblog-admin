@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "blog/category"
+const BASE_API = "api/blog/category"
 
 export default {
   /* 查询所有分类 */

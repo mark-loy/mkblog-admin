@@ -23,6 +23,7 @@
               active-color="#13ce66"
               inactive-color="#ff4949"
               @change="updateCommentState(scope.row.isDisabled, scope.row.id)"
+              :disabled="!hasPerm('comment.status')"
             >
             </el-switch>
           </template>
@@ -40,6 +41,7 @@
               size="mini"
               icon="el-icon-delete"
               @click="deleteComment(scope.row.id)"
+              v-if="hasPerm('comment.remove')"
               >删除</el-button
             >
           </template>

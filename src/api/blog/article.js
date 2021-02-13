@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "blog/article"
+const BASE_API = "api/blog/article"
 
 export default {
   /* 多组合条件查询文章分页数据 */

@@ -43,6 +43,14 @@
           >查询</el-button
         >
         <el-button type="default" @click="resetArticleData">清空</el-button>
+
+        <el-button
+          type="danger"
+          style="float: right"
+          @click="toAddArticle"
+          v-if="hasPerm('article.add')"
+          >添加文章</el-button
+        >
       </el-form>
 
       <!-- 表格 -->
@@ -133,6 +141,7 @@
               active-color="#13ce66"
               inactive-color="#ff4949"
               @change="updateArticleTopStatus(scope.row.isTop, scope.row.id)"
+              :disabled="!hasPerm('article.status')"
             >
             </el-switch>
           </template>
@@ -145,6 +154,7 @@
               active-color="#13ce66"
               inactive-color="#ff4949"
               @change="updateArticleStatus(scope.row.isReleased, scope.row.id)"
+              :disabled="!hasPerm('article.status')"
             >
             </el-switch>
           </template>
@@ -152,13 +162,16 @@
 
         <el-table-column label="操作" width="150" align="center">
           <template slot-scope="scope">
-            <router-link :to="'/blog/article/form/' + scope.row.id">
+            <router-link
+              :to="'/blog/article/form/' + scope.row.id"
+              v-if="hasPerm('article.update')"
+            >
               <el-button type="text" size="mini" icon="el-icon-edit"
                 >编辑文章信息</el-button
               >
             </router-link>
             <router-link :to="'/blog/comment/' + scope.row.id">
-              <el-button type="text" size="mini" icon="el-icon-view"
+              <el-button type="text" size="mini" icon="el-icon-view" v-if="hasPerm('comment.list')"
                 >查看评论</el-button
               >
             </router-link>
@@ -168,6 +181,7 @@
                 size="mini"
                 icon="el-icon-delete"
                 @click="deleteArticle(scope.row.id)"
+                v-if="hasPerm('article.remove')"
                 >删除</el-button
               >
             </div>
@@ -201,7 +215,7 @@ export default {
       /* 当前页 */
       current: 1,
       /* 当页显示数 */
-      limit: 5,
+      limit: 10,
       /* 文章条件查询对象 */
       articleQuery: {},
     };
@@ -221,6 +235,10 @@ export default {
           this.articles = res.data.articles;
           this.total = res.data.total;
         });
+    },
+    /* 添加文章 */
+    toAddArticle() {
+      this.$router.push("/blog/article/form");
     },
     /* 删除文章 */
     deleteArticle(id) {

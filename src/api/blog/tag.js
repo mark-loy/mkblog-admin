@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "blog/tag"
+const BASE_API = "api/blog/tag"
 
 export default {
   /* 查询所有标签*/

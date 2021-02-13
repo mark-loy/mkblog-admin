@@ -14,7 +14,7 @@
           >查询</el-button
         >
         <el-button type="default" @click="resetName">清空</el-button>
-        <el-button type="success" style="float: right" @click="openDialog(0)"
+        <el-button type="success" style="float: right" @click="openDialog(0)" v-if="hasPerm('category.add')"
           >添加分类</el-button
         >
       </el-form>
@@ -55,12 +55,14 @@
               size="mini"
               icon="el-icon-edit"
               @click="openDialog(scope.row.id)"
+              v-if="hasPerm('category.update')"
               >编辑分类</el-button
             >
             <el-button
               type="text"
               size="mini"
               icon="el-icon-delete"
+              v-if="hasPerm('category.remove')"
               @click="deleteCate(scope.row.id)"
               >删除</el-button
             >
@@ -109,7 +111,7 @@ export default {
       /* 当前页 */
       current: 1,
       /* 当页显示数 */
-      limit: 5,
+      limit: 10,
       /* 分类名 */
       name: "",
       /* 分类总数 */

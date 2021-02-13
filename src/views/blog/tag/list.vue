@@ -14,7 +14,7 @@
           >查询</el-button
         >
         <el-button type="default" @click="resetName">清空</el-button>
-        <el-button type="success" style="float: right" @click="openDialog(0)"
+        <el-button type="success" style="float: right" @click="openDialog(0)" v-if="hasPerm('tag.add')"
           >添加标签</el-button
         >
       </el-form>
@@ -55,6 +55,7 @@
               size="mini"
               icon="el-icon-edit"
               @click="openDialog(scope.row.id)"
+              v-if="hasPerm('tag.update')"
               >编辑标签</el-button
             >
             <el-button
@@ -62,6 +63,7 @@
               size="mini"
               icon="el-icon-delete"
               @click="deleteTag(scope.row.id)"
+              v-if="hasPerm('tag.remove')"
               >删除</el-button
             >
           </template>

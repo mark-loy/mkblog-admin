@@ -29,6 +29,7 @@
               size="mini"
               icon="el-icon-delete"
               @click="deleteGuestbook(scope.row.id)"
+              v-if="hasPerm('guestbook.remove')"
               >删除</el-button
             >
           </template>

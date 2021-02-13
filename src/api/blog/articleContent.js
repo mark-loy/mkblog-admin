@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "blog/article/content"
+const BASE_API = "api/blog/article/content"
 
 export default {
   /* 根据id查询文章内容 */

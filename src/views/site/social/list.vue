@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <el-button type="primary" @click="socialFormDialog = true"
+      <el-button type="primary" @click="socialFormDialog = true" v-if="hasPerm('social.add')"
         >新增</el-button
       >
       <!-- 表格 -->
@@ -23,8 +23,9 @@
         <el-table-column label="图标" align="center" width="200">
           <template slot-scope="scope">
             <i
-              :class="'iconfont ' + scope.row.icon"
-              :style="'color:' + scope.row.color"
+            class="iconfont"
+              :class="scope.row.icon"
+              :style="'color:' + scope.row.color + '; font-size: 25px'"
             ></i>
           </template>
         </el-table-column>
@@ -47,6 +48,7 @@
               size="mini"
               icon="el-icon-edit"
               @click="showUpdateDialog(scope.row.id)"
+              v-if="hasPerm('social.update')"
               >编辑</el-button
             >
             <el-button
@@ -54,6 +56,7 @@
               size="mini"
               icon="el-icon-delete"
               @click="deleteSocial(scope.row.id)"
+              v-if="hasPerm('social.remove')"
               >删除</el-button
             >
           </template>

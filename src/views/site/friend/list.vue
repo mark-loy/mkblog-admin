@@ -1,6 +1,6 @@
 <template>
   <div class="friends">
-    <el-button type="primary" class="add-friend" @click="showFriendFormDialog"
+    <el-button type="primary" class="add-friend" @click="showFriendFormDialog" v-if="hasPerm('friend.add')"
       >新增友站</el-button
     >
     <el-row :gutter="24">
@@ -20,11 +20,13 @@
               @click="showUpdateFriendDialog(friend.id)"
               class="el-icon-edit"
               style="color: rgb(64, 158, 255); cursor: pointer"
+              v-if="hasPerm('friend.update')"
             ></i>
             <i
               @click="deleteFriend(friend.id)"
               class="el-icon-delete"
               style="color: rgb(245, 108, 108); cursor: pointer"
+              v-if="hasPerm('friend.remove')"
             ></i>
           </div>
         </div>

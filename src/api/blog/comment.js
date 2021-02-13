@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const BASE_API = "blog/comment";
+const BASE_API = "api/blog/comment";
 
 export default {
   /* 获取文章的评论分页信息 */
