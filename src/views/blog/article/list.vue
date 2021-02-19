@@ -117,12 +117,6 @@
           width="90"
         ></el-table-column>
         <el-table-column
-          label="点赞数"
-          align="center"
-          prop="likeCount"
-          width="90"
-        ></el-table-column>
-        <el-table-column
           label="评论数"
           align="center"
           prop="commentCount"

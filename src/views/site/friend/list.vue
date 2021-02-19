@@ -123,6 +123,7 @@ export default {
     /* 展示新增表单对话框 */
     showFriendFormDialog() {
       this.friendFormVisible = true;
+      this.friendFormText = "添加";
     },
     /* 展示修改表单对话框 */
     showUpdateFriendDialog(id) {

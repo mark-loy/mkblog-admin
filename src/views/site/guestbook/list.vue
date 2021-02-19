@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-       <!-- 表格 -->
+      <!-- 表格 -->
       <el-table
         :data="guestbooks"
         element-loading-text="数据加载中"
@@ -36,7 +36,7 @@
         </el-table-column>
       </el-table>
 
-       <!-- 分页 -->
+      <!-- 分页 -->
       <el-pagination
         :current-page="current"
         :page-size="limit"
@@ -50,59 +50,56 @@
 </template>
 
 <script>
-  import guestbookApi from '@/api/site/guestbook'
+import guestbookApi from "@/api/site/guestbook";
 
-  export default {
-    data() {
-      return {
-        /* 留言列表 */
-        guestbooks: [],
-        /* 当前页 */
-        current: 1,
-        /* 当页显示数 */
-        limit: 10,
-        /* 总留言数 */
-        total: 0
-      }
+export default {
+  data() {
+    return {
+      /* 留言列表 */
+      guestbooks: [],
+      /* 当前页 */
+      current: 1,
+      /* 当页显示数 */
+      limit: 10,
+      /* 总留言数 */
+      total: 0,
+    };
+  },
+  created() {
+    this.getGuestbookPage();
+  },
+  methods: {
+    /* 获取留言分页数据 */
+    getGuestbookPage(current = 1) {
+      this.current = current;
+      // 调用api
+      guestbookApi.getGuestbookPage(this.current, this.limit).then((res) => {
+        // 设置留言列表数据
+        this.guestbooks = res.data.guestbooks;
+        this.total = res.data.total;
+      });
     },
-    created () {
-      this.getGuestbookPage();
-    },
-    methods: {
-      /* 获取留言分页数据 */
-      getGuestbookPage(current = 1) {
-        this.current = current
-        // 调用api
-        guestbookApi.getGuestbookPage(this.current, this.limit).then(res => {
-          // 设置留言列表数据
-          this.guestbooks = res.data.guestbooks
-          this.total = res.data.total
-        })
-      },
-      /* 删除留言 */
-      deleteGuestbook(id) {
-        this.$confirm("此操作将永久删除该留言, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
-        .then(() => {
+    /* 删除留言 */
+    deleteGuestbook(id) {
+       this.$confirm('此操作将永久删除该留言, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
           // 调用api
-          socialApi.deleteGuestbook(id).then(res => {
+          guestbookApi.deleteGuestbook(id).then((res) => {
             // 提示
-            this.$message.success("删除留言成功")
+            this.$message.success("删除留言成功");
             // 刷新数据
-            this.getGuestbookPage()
-          })
-        })
-        .catch(() => {
-          console.log("取消删除");
+            this.getGuestbookPage();
+          });
+        }).catch(() => {
+          console.log("取消删除");         
         });
-      }
     },
-  }
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

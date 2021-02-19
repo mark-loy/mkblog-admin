@@ -14,7 +14,11 @@
           >查询</el-button
         >
         <el-button type="default" @click="resetName">清空</el-button>
-        <el-button type="success" style="float: right" @click="openDialog(0)" v-if="hasPerm('tag.add')"
+        <el-button
+          type="success"
+          style="float: right"
+          @click="openDialog(0)"
+          v-if="hasPerm('tag.add')"
           >添加标签</el-button
         >
       </el-form>
@@ -34,12 +38,6 @@
           label="标签名称"
           align="center"
           prop="name"
-        ></el-table-column>
-
-        <el-table-column
-          label="文章数"
-          align="center"
-          prop="articleCount"
         ></el-table-column>
 
         <el-table-column label="创建时间" align="center">
@@ -119,10 +117,9 @@ export default {
       /* 控制表单对话框 */
       dialogFormVisible: false,
       /* 标签表单 */
-      tagForm: {
-      },
+      tagForm: {},
       /* 标签id */
-      tid: '',
+      tid: "",
       /* 标签表单验证规则 */
       tagFormRules: {
         name: [{ required: true, message: "请输入标签名称", trigger: "blur" }],
@@ -140,10 +137,10 @@ export default {
         if (valid) {
           if (this.tid) {
             // 修改标签
-            this.updateTag()
+            this.updateTag();
           } else {
             // 添加标签
-            this.saveTag()
+            this.saveTag();
           }
         } else {
           console.log("error submit!!");
@@ -155,13 +152,11 @@ export default {
     getTagPage(current = 1) {
       this.current = current;
       // 调用api
-      tagApi
-        .selectTagPage(this.current, this.limit, this.name)
-        .then((res) => {
-          // 设置标签数据
-          this.tags = res.data.tags;
-          this.total = res.data.total;
-        });
+      tagApi.selectTagPage(this.current, this.limit, this.name).then((res) => {
+        // 设置标签数据
+        this.tags = res.data.tags;
+        this.total = res.data.total;
+      });
     },
     /* 打开标签对话框 */
     openDialog(id) {
@@ -204,7 +199,7 @@ export default {
         this.dialogFormVisible = false;
         // 清空表单
         this.tagForm = {};
-        this.tid = ''
+        this.tid = "";
         // 刷新数据
         this.getTagPage();
       });
@@ -219,7 +214,7 @@ export default {
         this.dialogFormVisible = false;
         // 清空表单
         this.tagForm = {};
-        this.tid = ''
+        this.tid = "";
         // 刷新数据
         this.getTagPage();
       });

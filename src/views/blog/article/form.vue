@@ -67,7 +67,7 @@
         <el-form-item label="背景图">
           <el-upload
             class="avatar-uploader"
-            :action="BASE_API + 'api/oss/file/'"
+            :action="BASE_API + 'api/oss/file'"
             name="file"
             :limit="1"
             :on-success="handleSuccess"
@@ -131,8 +131,8 @@
 import articleApi from "@/api/blog/article";
 import categoryApi from "@/api/blog/category";
 import tagApi from "@/api/blog/tag";
-import userApi from "@/api/blog/user";
 import ossApi from "@/api/oss/index";
+import {selectAllUser} from '@/api/login'
 
 // 引入markdown
 import MarkdownEditor from "@/components/MarkdownEditor";
@@ -296,7 +296,7 @@ export default {
     /* 获取所有用户数据 */
     getAllUser() {
       // 调用api
-      userApi.selectAllUser().then((res) => {
+      selectAllUser().then((res) => {
         // 设置数据源
         this.users = res.data.users;
       });

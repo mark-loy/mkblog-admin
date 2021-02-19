@@ -92,13 +92,23 @@ export default {
     },
     /* 删除评论 */
     deleteComment(id) {
-      // 调用api
-      commentApi.deleteComment(id).then((res) => {
-        // 提示
-        this.$message.success("删除评论成功");
-        // 刷新数据
-        this.getCommentPage();
-      });
+      this.$confirm("此操作将永久删除该文章, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          // 调用api
+          commentApi.deleteComment(id).then((res) => {
+            // 提示
+            this.$message.success("删除评论成功");
+            // 刷新数据
+            this.getCommentPage();
+          });
+        })
+        .catch(() => {
+          console.log("取消了删除");
+        });
     },
   },
 };

@@ -14,7 +14,11 @@
           >查询</el-button
         >
         <el-button type="default" @click="resetName">清空</el-button>
-        <el-button type="success" style="float: right" @click="openDialog(0)" v-if="hasPerm('category.add')"
+        <el-button
+          type="success"
+          style="float: right"
+          @click="openDialog(0)"
+          v-if="hasPerm('category.add')"
           >添加分类</el-button
         >
       </el-form>
@@ -34,12 +38,6 @@
           label="分类名称"
           align="center"
           prop="name"
-        ></el-table-column>
-
-        <el-table-column
-          label="文章数"
-          align="center"
-          prop="articleCount"
         ></el-table-column>
 
         <el-table-column label="创建时间" align="center">
@@ -119,10 +117,9 @@ export default {
       /* 控制表单对话框 */
       dialogFormVisible: false,
       /* 分类表单 */
-      cateForm: {
-      },
+      cateForm: {},
       /* 分类id */
-      cid: '',
+      cid: "",
       /* 分类表单验证规则 */
       cateFormRules: {
         name: [{ required: true, message: "请输入分类名称", trigger: "blur" }],
@@ -140,10 +137,10 @@ export default {
         if (valid) {
           if (this.cid) {
             // 修改分类
-            this.updateCate()
+            this.updateCate();
           } else {
             // 添加分类
-            this.saveCate()
+            this.saveCate();
           }
         } else {
           console.log("error submit!!");
@@ -204,7 +201,7 @@ export default {
         this.dialogFormVisible = false;
         // 清空表单
         this.cateForm = {};
-        this.cid = ''
+        this.cid = "";
         // 刷新数据
         this.getCategoryPage();
       });
@@ -219,7 +216,7 @@ export default {
         this.dialogFormVisible = false;
         // 清空表单
         this.cateForm = {};
-        this.cid = ''
+        this.cid = "";
         // 刷新数据
         this.getCategoryPage();
       });

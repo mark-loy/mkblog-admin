@@ -55,7 +55,7 @@ router.beforeEach(async (to, from, next) => {
           })
         } catch (error) {
           // remove token and go to login page to re-login
-          await store.dispatch('user/FedLogOut')
+          await store.dispatch('FedLogOut')
           Message.error(error || 'Has Error')
           next(`/login?redirect=${to.path}`)
           NProgress.done()

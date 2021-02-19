@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function login(username, password) {
   return request({
     url: 'admin/acl/login',
-    method: 'post',
+    method: 'POST',
     data: {
       username,
       password
@@ -36,5 +36,13 @@ export function getMenu() {
   return request({
     url: 'admin/acl/index/menu',
     method: 'get'
+  })
+}
+
+// 获取所有用户信息
+export function selectAllUser() {
+  return request({
+    method: 'get',
+    url: 'api/acl/index/user/all'
   })
 }
